@@ -7,6 +7,18 @@ class Player(object):
         (self.x, self.y) = pos
         self.radius = radius
         self.color = color
+
+    def move_up(self):
+        self.y -= 40
+
+    def move_down(self):
+        self.y += 40
+
+    def move_left(self):
+        self.x -= 40
+
+    def move_rigth(self):
+        self.x += 40
     
     def render(self, surface):
         pos = (int(self.x), int(self.y))

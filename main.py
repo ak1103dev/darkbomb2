@@ -5,17 +5,24 @@ from gamelib import Board
 from elements import *
 
 class DarkBomb2Game(Board):
-    Black = pygame.Color('black')
-    Green  = pygame.Color('green')
-    Yellow = pygame.Color('yellow')
-    Red = pygame.Color('red')
+    BLACK = pygame.Color('black')
+    GREEN  = pygame.Color('green')
+    YELLOW = pygame.Color('yellow')
+    RED = pygame.Color('red')
 
     def __init__(self):
-        super(DarkBomb2Game, self).__init__('DarkBomb_2', DarkBomb2Game.Black, (440,400), 100)
-        self.player = Player(radius = 20, color = DarkBomb2Game.Green, pos = (20,20))
+        super(DarkBomb2Game, self).__init__('DarkBomb_2', DarkBomb2Game.BLACK, (440,400), 15)
+        self.player = Player(radius = 20, color = DarkBomb2Game.GREEN, pos = (20,20))
 
     def update(self):
-        pass
+        if self.is_key_pressed(K_UP):
+            self.player.move_up()
+        if self.is_key_pressed(K_DOWN):
+            self.player.move_down()
+        if self.is_key_pressed(K_RIGHT):
+            self.player.move_rigth()
+        if self.is_key_pressed(K_LEFT):
+            self.player.move_left()
 
     def render(self, surface):
         self.player.render(surface)
