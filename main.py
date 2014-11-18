@@ -11,21 +11,26 @@ class DarkBomb2Game(Board):
     RED = pygame.Color('red')
 
     def __init__(self):
-        super(DarkBomb2Game, self).__init__('DarkBomb_2', DarkBomb2Game.BLACK, (440,400), 15)
+        super(DarkBomb2Game, self).__init__('DarkBomb_2', DarkBomb2Game.BLACK, (440,440), 15)
         self.player = Player(radius = 20, color = DarkBomb2Game.GREEN, pos = (20,20))
+        self.bomb = Bomb(radius = 20,
+                        color = DarkBomb2Game.RED, 
+                        pos = (self.window_size[0]/2,self.window_size[1]/2))
 
     def update(self):
+
         if self.is_key_pressed(K_UP):
             self.player.move_up()
-        if self.is_key_pressed(K_DOWN):
+        elif self.is_key_pressed(K_DOWN):
             self.player.move_down()
-        if self.is_key_pressed(K_RIGHT):
+        elif self.is_key_pressed(K_RIGHT):
             self.player.move_rigth()
-        if self.is_key_pressed(K_LEFT):
+        elif self.is_key_pressed(K_LEFT):
             self.player.move_left()
 
     def render(self, surface):
         self.player.render(surface)
+        self.bomb.render(surface)
 
 def main():
     game = DarkBomb2Game()
