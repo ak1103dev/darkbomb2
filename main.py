@@ -6,6 +6,7 @@ from elements import *
 
 class DarkBomb2Game(Board):
     BLACK = pygame.Color('black')
+    WHITE = pygame.Color('white')
     GREEN  = pygame.Color('green')
     YELLOW = pygame.Color('yellow')
     RED = pygame.Color('red')
@@ -14,7 +15,7 @@ class DarkBomb2Game(Board):
         super(DarkBomb2Game, self).__init__('DarkBomb_2', DarkBomb2Game.BLACK, (440,440), 15)
         self.player = Player(radius = 20, color = DarkBomb2Game.GREEN, pos = (20,20))
         self.bomb = Bomb(radius = 20,
-                        color = DarkBomb2Game.RED, 
+                        color = DarkBomb2Game.WHITE, 
                         pos = (self.window_size[0]/2,self.window_size[1]/2))
 
     def update(self):
