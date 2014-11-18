@@ -3,17 +3,12 @@ from pygame.locals import *
 
 class Player(object):
 
-    def __init__(self, x, y, color):
-        self.x = x
-        self.y = y
-        self.color = color 
-        self.radius = 40
+    def __init__(self, radius, color, pos):
+        (self.x, self.y) = pos
+        self.radius = radius
+        self.color = color
     
     def render(self, surface):
-        print "jkljljjljlj"
-        pygame.draw.circle(surface, self.color, (self.x,self.y), self.radius, 0)
+        pos = (int(self.x), int(self.y))
+        pygame.draw.circle(surface, self.color, pos, self.radius, 0)
 
-class Bomb(object):
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
