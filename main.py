@@ -44,6 +44,8 @@ class DarkBomb2Game(Board):
             print 'HIT!!!!!!!!!!!!!!!!!!!!!!!'
 
         """ Check Finished"""
+        if (self.player.x+20, self.player.y+20) == self.window_size:
+            print 'You Win'
 
     def render(self, surface):
         self.player.render(surface)
