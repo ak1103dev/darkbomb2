@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+from random import randint
 
 class Player(object):
 
@@ -20,16 +21,6 @@ class Player(object):
     def move_rigth(self):
         self.x += 40
     
-    def player_in_windows(self):
-        if self.x == 0:
-            self.x = 0
-        elif self.x == self.window_size[0]:
-            self.x = self.window_size[0]
-        elif self.y == 0:
-            self.y = 0
-        elif self.y == self.window_size[1]:
-            self.y = self.window_size[1]
-
     def render(self, surface):
         pos = (int(self.x), int(self.y))
         pygame.draw.circle(surface, self.color, pos, self.radius, 0)
@@ -37,7 +28,8 @@ class Player(object):
 class Bomb(object):
 
     def __init__(self, radius, color, pos):
-        (self.x, self.y) = pos
+        self.x = pos[0] + 40*randint(-5,5)
+        self.y = pos[1] + 40*randint(-5,5)
         self.radius = radius
         self.color = color
 
