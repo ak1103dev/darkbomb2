@@ -33,6 +33,9 @@ class Bomb(object):
         self.radius = radius
         self.color = color
 
+    def check_hit(self, player):
+        return (int(self.x), int(self.y)) == (player.x, player.y)
+    
     def render(self, surface):
         pos = (int(self.x), int(self.y))
         pygame.draw.circle(surface, self.color, pos, self.radius, 0)

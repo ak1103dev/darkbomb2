@@ -19,6 +19,7 @@ class DarkBomb2Game(Board):
                         pos = (self.window_size[0]/2,self.window_size[1]/2))
 
     def update(self):
+        """ Player can't go out of screen """
         if self.player.x <= 20:
             self.player.x = 20
         if self.player.x >= self.window_size[0]-20:
@@ -28,6 +29,7 @@ class DarkBomb2Game(Board):
         if self.player.y >= self.window_size[1]-20:
             self.player.y = self.window_size[1]-20
 
+        """ Player's Movement """
         if self.is_key_pressed(K_UP):
             self.player.move_up()
         elif self.is_key_pressed(K_DOWN):
@@ -36,6 +38,12 @@ class DarkBomb2Game(Board):
             self.player.move_rigth()
         elif self.is_key_pressed(K_LEFT):
             self.player.move_left()
+
+        """ Check Hit """
+        if self.bomb.check_hit(self.player):
+            print 'HIT!!!!!!!!!!!!!!!!!!!!!!!'
+
+        """ Check Finished"""
 
     def render(self, surface):
         self.player.render(surface)
