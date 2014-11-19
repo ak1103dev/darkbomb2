@@ -20,6 +20,16 @@ class Player(object):
     def move_rigth(self):
         self.x += 40
     
+    def player_in_windows(self):
+        if self.x == 0:
+            self.x = 0
+        elif self.x == self.window_size[0]:
+            self.x = self.window_size[0]
+        elif self.y == 0:
+            self.y = 0
+        elif self.y == self.window_size[1]:
+            self.y = self.window_size[1]
+
     def render(self, surface):
         pos = (int(self.x), int(self.y))
         pygame.draw.circle(surface, self.color, pos, self.radius, 0)

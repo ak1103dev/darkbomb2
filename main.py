@@ -19,6 +19,14 @@ class DarkBomb2Game(Board):
                         pos = (self.window_size[0]/2,self.window_size[1]/2))
 
     def update(self):
+        if self.player.x <= 20:
+            self.player.x = 20
+        if self.player.x >= self.window_size[0]-20:
+            self.player.x = self.window_size[0]-20
+        if self.player.y <= 20:
+            self.player.y = 20
+        if self.player.y >= self.window_size[1]-20:
+            self.player.y = self.window_size[1]-20
 
         if self.is_key_pressed(K_UP):
             self.player.move_up()
