@@ -12,7 +12,7 @@ class DarkBomb2Game(Board):
     RED = pygame.Color('red')
 
     def __init__(self):
-        super(DarkBomb2Game, self).__init__('DarkBomb_2', DarkBomb2Game.BLACK, (440,440), 15)
+        super(DarkBomb2Game, self).__init__('DarkBomb_2', DarkBomb2Game.BLACK, (440,440), 12)
         self.player = Player(radius = 20, color = DarkBomb2Game.GREEN, pos = (20,20))
         self.bomb = Bomb(radius = 20,
                         color = DarkBomb2Game.WHITE, 
