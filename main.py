@@ -18,12 +18,17 @@ class DarkBomb2Game(Board):
         super(DarkBomb2Game, self).__init__('DarkBomb_2', DarkBomb2Game.BLACK, (440,440), 12)
         self.reinit()
 
+    def init(self):
+        super(DarkBomb2Game, self).init()
+        self.render_score()
+
     def reinit(self):
         self.player = Player(radius = 20, color = DarkBomb2Game.GREEN, pos = (20,20))
         self.bomb = Bomb(radius = 20,
                         color = DarkBomb2Game.WHITE, 
                         pos = (self.window_size[0]/2,self.window_size[1]/2))
         self.score = 0
+
 
 
     def update(self):
@@ -55,20 +60,23 @@ class DarkBomb2Game(Board):
         if (self.player.x+20, self.player.y+20) == self.window_size:
             DarkBomb2Game.game_finish = True
 
-        """ Restart When Game Over or Finished """
-        if DarkBomb2Game.game_over or DarkBomb2Game.game_finish:
-            
-            if DarkBomb2Game.game_over:
-                print 'game over' 
-                self.reinit()
-                DarkBomb2Game.game_over = False
-                
-            if DarkBomb2Game.game_finish:
-                print 'you win'
+        """ Restart When Game Over """
+        if DarkBomb2Game.game_over:
+            print 'game over' 
+            self.reinit()
+            DarkBomb2Game.game_over = False
+
+        """ Add Bomb When Game Finished """    
+        if DarkBomb2Game.game_finish:
+            print 'you win'
+
+    def render_score(self):
+        self.score_image = self.font.render('Bomb = %d' % self.score, 0, DarkBomb2Game.WHITE)
 
     def render(self, surface):
         self.bomb.render(surface)
         self.player.render(surface)
+        surface.blit(self.score_image, (self.window_size[0] - 120,10))
 
 def main():
     game = DarkBomb2Game()
