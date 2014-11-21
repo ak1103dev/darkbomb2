@@ -13,6 +13,7 @@ class DarkBomb2Game(Board):
 
     game_over = False
     game_finish = False
+    closed_bomb = False
 
     def __init__(self):
         super(DarkBomb2Game, self).__init__('DarkBomb_2', DarkBomb2Game.BLACK, (440,440), 12)
@@ -66,6 +67,12 @@ class DarkBomb2Game(Board):
         if (self.player.x+20, self.player.y+20) == self.window_size:
             DarkBomb2Game.game_finish = True
 
+        """ Check Closed """
+        for bomb in self.bombs:
+            if bomb.check_closed(self.player):
+                DarkBomb2Game.closed_bomb = True
+                break
+
         """ Restart When Game Over """
         if DarkBomb2Game.game_over:
             print 'game over' 
@@ -82,6 +89,16 @@ class DarkBomb2Game(Board):
                         )
             DarkBomb2Game.game_finish = False
 
+        """ Warning When Closed """
+        if DarkBomb2Game.closed_bomb:
+            self.player = Player(radius = 20, color = DarkBomb2Game.YELLOW, 
+                                pos = (self.player.x, self.player.y))
+            DarkBomb2Game.closed_bomb = False
+        else:
+            self.player = Player(radius = 20, color = DarkBomb2Game.GREEN, 
+                                pos = (self.player.x, self.player.y))
+
+        """ Render Bombs' Number """
         self.score_image = self.font.render('Bomb = %d' % len(self.bombs), 0, DarkBomb2Game.WHITE)
 
     def render(self, surface):

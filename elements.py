@@ -36,6 +36,12 @@ class Bomb(object):
 
     def check_hit(self, player):
         return (int(self.x), int(self.y)) == (player.x, player.y)
+
+    def check_closed(self, player):
+        a = (abs(self.x-player.x), abs(self.y-player.y)) == (2*self.radius, 2*self.radius) 
+        b = (abs(self.x-player.x), abs(self.y-player.y)) == (0, 2*self.radius) 
+        c = (abs(self.x-player.x), abs(self.y-player.y)) == (2*self.radius, 0) 
+        return a or b or c
     
     def render(self, surface):
         pos = (int(self.x), int(self.y))
