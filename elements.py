@@ -32,6 +32,7 @@ class Bomb(object):
         self.y = pos[1] + 40*randint(-5,5)
         self.radius = radius
         self.color = color
+        self.number = 1
 
     def check_hit(self, player):
         return (int(self.x), int(self.y)) == (player.x, player.y)
