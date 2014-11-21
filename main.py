@@ -16,6 +16,10 @@ class DarkBomb2Game(Board):
 
     def __init__(self):
         super(DarkBomb2Game, self).__init__('DarkBomb_2', DarkBomb2Game.BLACK, (440,440), 12)
+        self.bomb = Bomb(radius = 20,
+                        color = DarkBomb2Game.WHITE, 
+                        pos = (self.window_size[0]/2,self.window_size[1]/2))
+
         self.reinit()
 
     def init(self):
@@ -23,11 +27,7 @@ class DarkBomb2Game(Board):
 
     def reinit(self):
         self.player = Player(radius = 20, color = DarkBomb2Game.GREEN, pos = (20,20))
-        self.bomb = Bomb(radius = 20,
-                        color = DarkBomb2Game.WHITE, 
-                        pos = (self.window_size[0]/2,self.window_size[1]/2))
-
-
+        
 
     def update(self):
         """ Player can't go out of screen """
@@ -68,6 +68,7 @@ class DarkBomb2Game(Board):
         if DarkBomb2Game.game_finish:
             print 'you win'
             self.bomb.number += 1
+            self.reinit()
             DarkBomb2Game.game_finish = False
 
         self.score_image = self.font.render('Bomb = %d' % self.bomb.number, 0, DarkBomb2Game.WHITE)
