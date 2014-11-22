@@ -7,6 +7,7 @@ from elements import *
 class DarkBomb2Game(Board):
     BLACK = pygame.Color('black')
     WHITE = pygame.Color('white')
+    BLUE = pygame.Color('blue')
     GREEN  = pygame.Color('green')
     YELLOW = pygame.Color('yellow')
     RED = pygame.Color('red')
@@ -92,7 +93,7 @@ class DarkBomb2Game(Board):
                                 pos = (self.player.x, self.player.y))
 
         """ Render Bombs' Number """
-        self.score_image = self.font.render('Bomb = %d' % len(self.bombs), 0, DarkBomb2Game.WHITE)
+        self.score_image = self.font.render('Bomb = %d' % len(self.bombs), 0, DarkBomb2Game.BLUE)
 
     def render(self, surface):
         for bomb in self.bombs:
