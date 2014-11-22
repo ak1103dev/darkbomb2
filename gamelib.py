@@ -31,16 +31,8 @@ class Board(object):
 
             self.clock.tick(self.fps)
 
-    def is_key_pressed(self, key):
-        keys_pressed = pygame.key.get_pressed()
-        if key < 0 or key >= len(keys_pressed):
-            return False
-        return (keys_pressed[key])
-
-
     def terminate(self):
         self.is_terminated = True
-
 
     def __handle_events(self):
         for event in pygame.event.get():
@@ -55,3 +47,9 @@ class Board(object):
 
     def render(self, surface):
         pass
+
+    def is_key_pressed(self, key):
+        keys_pressed = pygame.key.get_pressed()
+        if key < 0 or key >= len(keys_pressed):
+            return False
+        return (keys_pressed[key])

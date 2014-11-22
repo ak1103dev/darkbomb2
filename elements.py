@@ -31,6 +31,9 @@ class Player(object):
         if self.y >= window_size[1]-20:
             self.y = window_size[1]-20
 
+    def check_finished(self, window_size):
+        return (self.x+20, self.y+20) == window_size
+
     def render(self, surface):
         pos = (int(self.x), int(self.y))
         pygame.draw.circle(surface, self.color, pos, self.radius, 0)

@@ -39,6 +39,7 @@ class DarkBomb2Game(Board):
                         )
 
     def update(self):
+
         """ Player can't go out of screen """
         self.player.in_screen(self.window_size)
 
@@ -58,7 +59,7 @@ class DarkBomb2Game(Board):
                 DarkBomb2Game.game_over = True
 
         """ Check Finished """
-        if (self.player.x+20, self.player.y+20) == self.window_size:
+        if self.player.check_finished(self.window_size):
             DarkBomb2Game.game_finish = True
 
         """ Check Closed """
