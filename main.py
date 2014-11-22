@@ -39,14 +39,7 @@ class DarkBomb2Game(Board):
 
     def update(self):
         """ Player can't go out of screen """
-        if self.player.x <= 20:
-            self.player.x = 20
-        if self.player.x >= self.window_size[0]-20:
-            self.player.x = self.window_size[0]-20
-        if self.player.y <= 20:
-            self.player.y = 20
-        if self.player.y >= self.window_size[1]-20:
-            self.player.y = self.window_size[1]-20
+        self.player.in_screen(self.window_size)
 
         """ Player's Movement """
         if self.is_key_pressed(K_UP):
