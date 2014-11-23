@@ -26,6 +26,7 @@ class DarkBomb2Game(Board):
         super(DarkBomb2Game, self).init()
 
     def reinit(self):
+        super(DarkBomb2Game, self).__init__('DarkBomb_2', DarkBomb2Game.BLACK, (440,440), 12)
         self.init_bombs()
         self.init_player()
 
@@ -75,12 +76,14 @@ class DarkBomb2Game(Board):
         """ Restart When Game Over """
         if DarkBomb2Game.game_over:
             print 'game over' 
-            self.reinit()
+            super(DarkBomb2Game, self).__init__('DarkBomb_2', DarkBomb2Game.WHITE, (440,440), 12)
+        if self.is_key_pressed(K_SPACE):
             DarkBomb2Game.game_over = False
+            self.reinit()
 
         """ Add Bomb When Game Finished """    
         if DarkBomb2Game.game_finish:
-            print 'you win'
+            print 'you win ' + str(len(self.bombs))
             self.init_player()
             self.bombs.append(Bomb(radius = 20,
                         color = DarkBomb2Game.BLACK, 
