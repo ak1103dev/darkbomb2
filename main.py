@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+from random import randint
 
 from gamelib import Board
 from elements import *
@@ -18,8 +19,8 @@ class DarkBomb2Game(Board):
 
     def __init__(self):
         super(DarkBomb2Game, self).__init__('DarkBomb_2', DarkBomb2Game.BLACK, (440,440), 12)
-        self.init_bombs()
         self.init_player()
+        self.init_bombs()
 
     def init(self):
         super(DarkBomb2Game, self).init()
@@ -37,6 +38,9 @@ class DarkBomb2Game(Board):
                         color = DarkBomb2Game.WHITE, 
                         pos = (self.window_size[0]/2,self.window_size[1]/2))
                         )
+        while (self.bombs[-1].x, self.bombs[-1].y) in self.player.check_line_way(self.window_size):
+            self.bombs[-1].x = self.window_size[0]/2 + 2*self.bombs[-1].radius*randint(-5,5)
+            self.bombs[-1].y = self.window_size[1]/2 + 2*self.bombs[-1].radius*randint(-5,5)
 
     def update(self):
 
