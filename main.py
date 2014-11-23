@@ -35,7 +35,7 @@ class DarkBomb2Game(Board):
     def init_bombs(self):
         self.bombs = [] 
         self.bombs.append(Bomb(radius = 20,
-                        color = DarkBomb2Game.WHITE, 
+                        color = DarkBomb2Game.BLACK, 
                         pos = (self.window_size[0]/2,self.window_size[1]/2))
                         )
         while (self.bombs[-1].x, self.bombs[-1].y) in self.player.check_line_way(self.window_size):
@@ -83,7 +83,7 @@ class DarkBomb2Game(Board):
             print 'you win'
             self.init_player()
             self.bombs.append(Bomb(radius = 20,
-                        color = DarkBomb2Game.WHITE, 
+                        color = DarkBomb2Game.BLACK, 
                         pos = (self.window_size[0]/2,self.window_size[1]/2))
                         )
             DarkBomb2Game.game_finish = False
