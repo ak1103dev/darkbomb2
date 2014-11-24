@@ -19,7 +19,7 @@ class DarkBomb2Game(Board):
 
     def __init__(self):
         self.init_board(DarkBomb2Game.BLACK)
-        self.init_player()
+        self.init_player(DarkBomb2Game.YELLOW)
         self.init_bombs()
 
     def init(self):
@@ -28,13 +28,13 @@ class DarkBomb2Game(Board):
     def reinit(self):
         self.init_board(DarkBomb2Game.BLACK)
         self.init_bombs()
-        self.init_player()
+        self.init_player(DarkBomb2Game.YELLOW)
 
     def init_board(self, b_color):
         super(DarkBomb2Game, self).__init__('DarkBomb_2', b_color, (440,440), 12)
         
-    def init_player(self):
-        self.player = Player(radius = 20, color = DarkBomb2Game.GREEN, pos = (20,20))
+    def init_player(self, p_color):
+        self.player = Player(radius = 20, color = p_color, pos = (20,20))
 
     def init_bombs(self):
         self.bombs = [] 
@@ -87,7 +87,7 @@ class DarkBomb2Game(Board):
         """ Add Bomb When Game Finished """    
         if DarkBomb2Game.game_finish:
             print 'you win ' + str(len(self.bombs))
-            self.init_player()
+            self.init_player(DarkBomb2Game.YELLOW)
             self.bombs.append(Bomb(radius = 20,
                         color = DarkBomb2Game.BLACK, 
                         pos = (self.window_size[0]/2,self.window_size[1]/2))
@@ -96,11 +96,11 @@ class DarkBomb2Game(Board):
 
         """ Warning When Closed """
         if DarkBomb2Game.closed_bomb:
-            self.player = Player(radius = 20, color = DarkBomb2Game.YELLOW, 
+            self.player = Player(radius = 20, color = DarkBomb2Game.RED, 
                                 pos = (self.player.x, self.player.y))
             DarkBomb2Game.closed_bomb = False
         else:
-            self.player = Player(radius = 20, color = DarkBomb2Game.GREEN, 
+            self.player = Player(radius = 20, color = DarkBomb2Game.YELLOW, 
                                 pos = (self.player.x, self.player.y))
 
         """ Render Bombs' Number """
