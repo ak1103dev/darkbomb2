@@ -18,7 +18,7 @@ class DarkBomb2Game(Board):
     closed_bomb = False
 
     def __init__(self):
-        super(DarkBomb2Game, self).__init__('DarkBomb_2', DarkBomb2Game.BLACK, (440,440), 12)
+        self.init_board(DarkBomb2Game.BLACK)
         self.init_player()
         self.init_bombs()
 
@@ -26,10 +26,13 @@ class DarkBomb2Game(Board):
         super(DarkBomb2Game, self).init()
 
     def reinit(self):
-        super(DarkBomb2Game, self).__init__('DarkBomb_2', DarkBomb2Game.BLACK, (440,440), 12)
+        self.init_board(DarkBomb2Game.BLACK)
         self.init_bombs()
         self.init_player()
 
+    def init_board(self, b_color):
+        super(DarkBomb2Game, self).__init__('DarkBomb_2', b_color, (440,440), 12)
+        
     def init_player(self):
         self.player = Player(radius = 20, color = DarkBomb2Game.GREEN, pos = (20,20))
 
@@ -76,7 +79,7 @@ class DarkBomb2Game(Board):
         """ Restart When Game Over """
         if DarkBomb2Game.game_over:
             print 'game over' 
-            super(DarkBomb2Game, self).__init__('DarkBomb_2', DarkBomb2Game.WHITE, (440,440), 12)
+            self.init_board(DarkBomb2Game.WHITE)
         if self.is_key_pressed(K_SPACE):
             DarkBomb2Game.game_over = False
             self.reinit()
