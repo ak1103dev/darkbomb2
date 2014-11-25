@@ -107,6 +107,9 @@ class DarkBomb2Game(Board):
         self.score_image = self.font.render('Bomb = %d' % len(self.bombs), 0, DarkBomb2Game.BLUE)
 
     def render(self, surface):
+        pygame.draw.rect(surface, DarkBomb2Game.GREEN, pygame.Rect(self.window_size[0] - self.player.radius,
+                                                                   self.window_size[1] -self.player.radius,
+                                                                   2*self.player.x,2*self.player.y))
         for bomb in self.bombs:
             bomb.render(surface)
         self.player.render(surface)
